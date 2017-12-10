@@ -20,7 +20,7 @@ public class DummyAnimation extends LayerAnimation {
 
     @Override
     public void onStart(long now) {
-        stop();
+        stop(now);
     }
 
     protected void startChildren() {

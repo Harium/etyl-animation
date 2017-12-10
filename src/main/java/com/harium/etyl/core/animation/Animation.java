@@ -70,8 +70,9 @@ public class Animation implements Module {
             // Keep the object in the list
             return false;
         } else {
-            //Animation is over
-            notifyFinish(script, now);
+            // Animation is over
+            // Notify finish
+            script.stop(now);
 
             //Next Script
             appendNextScript(script);
@@ -90,11 +91,6 @@ public class Animation implements Module {
                 s.restart();
             }
         }
-    }
-
-    private void notifyFinish(AnimationScript script, long now) {
-        script.onFinish(now);
-        script.stop();
     }
 
     public void add(AnimationScript script) {

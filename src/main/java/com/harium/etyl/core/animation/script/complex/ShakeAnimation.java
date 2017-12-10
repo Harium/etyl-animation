@@ -4,6 +4,7 @@ import com.harium.etyl.commons.layer.Layer;
 import com.harium.etyl.core.animation.script.RepeatedAnimation;
 
 public abstract class ShakeAnimation extends RepeatedAnimation {
+
 	protected int startValue = UNDEFINED;
 
 	protected int strength = 10;

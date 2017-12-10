@@ -55,15 +55,18 @@ public abstract class AnimationScript {
         started = true;
         stopped = false;
         this.startedAt = now;
+        onStart(now);
     }
 
-    public void stop() {
+    public void stop(long now) {
         started = true;
         stopped = true;
+        onFinish(now);
     }
 
     /**
      * Method to update the animation
+     *
      * @param now - the time in milliseconds
      */
     public void tick(long now) {
@@ -86,6 +89,7 @@ public abstract class AnimationScript {
 
     /**
      * Method to effectively animate
+     *
      * @param now - the time in milliseconds
      * @return animation is ended
      */
