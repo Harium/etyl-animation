@@ -27,8 +27,8 @@ public class HorizontalAnimation extends SingleIntervalAnimation {
     }
 
     @Override
-    public void onStart(long now) {
-        super.onStart(now);
+    public void onAnimationStart(long now) {
+        super.onAnimationStart(now);
         if (startValue == UNDEFINED) {
             startValue = target.getX();
         }

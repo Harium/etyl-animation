@@ -42,8 +42,8 @@ public class HorizontalShakeAnimation extends ShakeAnimation {
     }
 
     @Override
-    public void onStart(long now) {
-        super.onStart(now);
+    public void onAnimationStart(long now) {
+        super.onAnimationStart(now);
         if (startValue == UNDEFINED) {
             startValue = target.getX();
         }
@@ -51,8 +51,8 @@ public class HorizontalShakeAnimation extends ShakeAnimation {
     }
 
     @Override
-    public void onFinish(long now) {
-        super.onFinish(now);
+    public void onAnimationFinish(long now) {
+        super.onAnimationFinish(now);
         initialX = startValue;
         target.setX(startValue);
     }

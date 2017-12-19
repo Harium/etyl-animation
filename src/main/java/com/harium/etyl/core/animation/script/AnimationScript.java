@@ -25,9 +25,14 @@ public abstract class AnimationScript {
 
     protected List<AnimationScript> next;
 
-    private OnAnimationFinishListener listener;
+    private OnAnimationFinishListener listener = NULL_LISTENER;
 
     protected Interpolator interpolator = Interpolator.LINEAR;
+
+    private static final OnAnimationFinishListener NULL_LISTENER = new OnAnimationFinishListener() {
+        @Override
+        public void onAnimationFinish(long now) {}
+    };
 
     public AnimationScript(long time) {
         super();
@@ -55,13 +60,13 @@ public abstract class AnimationScript {
         started = true;
         stopped = false;
         this.startedAt = now;
-        onStart(now);
+        onAnimationStart(now);
     }
 
     public void stop(long now) {
         started = true;
         stopped = true;
-        onFinish(now);
+        onAnimationFinish(now);
     }
 
     /**
@@ -141,6 +146,11 @@ public abstract class AnimationScript {
         return this;
     }
 
+    public AnimationScript onFinish(OnAnimationFinishListener listener) {
+        this.listener = listener;
+        return this;
+    }
+
     public boolean isStopped() {
         return stopped;
     }
@@ -212,13 +222,11 @@ public abstract class AnimationScript {
         this.referenced = referenced;
     }
 
-    public void onFinish(long now) {
-        if (listener == null)
-            return;
-
+    public void onAnimationFinish(long now) {
         listener.onAnimationFinish(now);
     }
 
-    public void onStart(long now) {
+    public void onAnimationStart(long now) {
     }
+
 }

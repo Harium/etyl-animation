@@ -39,8 +39,8 @@ public class VerticalShakeAnimation extends ShakeAnimation {
     }
 
     @Override
-    public void onStart(long now) {
-        super.onStart(now);
+    public void onAnimationStart(long now) {
+        super.onAnimationStart(now);
         if (startValue == UNDEFINED) {
             startValue = target.getY();
         }
@@ -48,8 +48,8 @@ public class VerticalShakeAnimation extends ShakeAnimation {
     }
 
     @Override
-    public void onFinish(long now) {
-        super.onFinish(now);
+    public void onAnimationFinish(long now) {
+        super.onAnimationFinish(now);
         initialY = startValue;
         target.setY(startValue);
     }

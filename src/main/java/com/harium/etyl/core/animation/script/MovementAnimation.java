@@ -20,8 +20,8 @@ public class MovementAnimation extends LayerAnimation {
     }
 
     @Override
-    public void onStart(long now) {
-        super.onStart(now);
+    public void onAnimationStart(long now) {
+        super.onAnimationStart(now);
         if (startX == UNDEFINED) {
             startX = target.getX();
         }

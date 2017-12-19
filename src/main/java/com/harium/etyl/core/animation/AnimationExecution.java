@@ -24,7 +24,7 @@ public class AnimationExecution {
     public boolean execute(long now) {
         if (!started) {
             start(now);
-            // script.onStart(now);
+            // script.onAnimationStart(now);
             // Is called in script.start(now) method
         }
 

@@ -36,8 +36,8 @@ public class FadeOutAnimation extends OpacityAnimation {
 	}
 
 	@Override
-	public void onStart(long now) {
-		super.onStart(now);
+	public void onAnimationStart(long now) {
+		super.onAnimationStart(now);
 		startValue = Layer.MAX_OPACITY;
 		endValue = 0;
 	}

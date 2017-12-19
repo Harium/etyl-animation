@@ -71,7 +71,7 @@ public class Animation implements Module {
             return false;
         } else {
             // Animation is over
-            // Notify finish
+            // Notify onAnimationFinish
             script.stop(now);
 
             //Next Script
@@ -114,7 +114,6 @@ public class Animation implements Module {
         scripts.clear();
         nextScripts.clear();
     }
-
 
     @Override
     public void draw(Graphics g) {

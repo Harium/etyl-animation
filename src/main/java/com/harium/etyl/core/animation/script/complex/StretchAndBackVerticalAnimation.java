@@ -36,10 +36,10 @@ public class StretchAndBackVerticalAnimation extends StretchVerticalAnimation {
     }
 
     @Override
-    public void onFinish(long now) {
+    public void onAnimationFinish(long now) {
         double offset = ((target.getH() / 2) * endValue);
         target.setY((int) (originalY - offset));
-        super.onFinish(now);
+        super.onAnimationFinish(now);
     }
 
 }

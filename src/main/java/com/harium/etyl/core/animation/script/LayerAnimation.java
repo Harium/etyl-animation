@@ -249,7 +249,7 @@ public class LayerAnimation extends AnimationScript {
     }
 
     protected void startChildren() {
-        onStart(0);
+        onAnimationStart(0);
 
         if (next != null) {
             for (AnimationScript s : next) {
