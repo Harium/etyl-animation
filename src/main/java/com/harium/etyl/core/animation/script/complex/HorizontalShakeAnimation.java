@@ -28,7 +28,6 @@ public class HorizontalShakeAnimation extends ShakeAnimation {
         double slice = part;
 
         if (interval % 2 == 0) {
-
             slice = 1 - slice;
         }
 

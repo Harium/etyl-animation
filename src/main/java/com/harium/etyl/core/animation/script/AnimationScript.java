@@ -25,7 +25,7 @@ public abstract class AnimationScript {
 
     protected List<AnimationScript> next;
 
-    private OnAnimationFinishListener listener = NULL_LISTENER;
+    protected OnAnimationFinishListener listener = NULL_LISTENER;
 
     protected Interpolator interpolator = Interpolator.LINEAR;
 
