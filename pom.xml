@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.harium.etyl</groupId>
     <artifactId>animation</artifactId>
-    <version>1.1.1</version>
+    <version>1.2.0</version>
     <packaging>jar</packaging>
     <name>Etyl Animation</name>
     <description>Animation module to Etyl</description>
