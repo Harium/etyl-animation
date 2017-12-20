@@ -22,8 +22,7 @@ public class StretchVerticalAnimation extends SingleIntervalAnimation {
     @Override
     public void setTarget(Layer target) {
         super.setTarget(target);
-
-        originalY = (int) (target.getY());
+        originalY = target.getY();
     }
 
     @Override

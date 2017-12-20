@@ -31,7 +31,8 @@ public abstract class AnimationScript {
 
     private static final OnAnimationFinishListener NULL_LISTENER = new OnAnimationFinishListener() {
         @Override
-        public void onAnimationFinish(long now) {}
+        public void onAnimationFinish(long now) {
+        }
     };
 
     public AnimationScript(long time) {

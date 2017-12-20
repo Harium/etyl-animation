@@ -25,5 +25,4 @@ public class ScaleUniformAnimation extends SingleIntervalAnimation {
     public void update(double value) {
         target.setScale(value);
     }
-
 }
