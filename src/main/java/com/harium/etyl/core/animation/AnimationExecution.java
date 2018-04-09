@@ -30,10 +30,9 @@ public class AnimationExecution {
 
         if (!script.isStopped()) {
             script.tick(now);
-            return true;
         }
 
-        return false;
+        return !script.isStopped();
     }
 
     public void repeat(long now) {

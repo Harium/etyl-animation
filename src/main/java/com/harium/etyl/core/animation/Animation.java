@@ -11,6 +11,7 @@ import com.harium.etyl.core.animation.script.LayerAnimation;
 import com.harium.etyl.core.graphics.Graphics;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Animation implements Module {
@@ -19,8 +20,7 @@ public class Animation implements Module {
 
     private static Animation instance;
 
-    private List<AnimationExecution> scripts = new ArrayList<AnimationExecution>();
-    private List<AnimationExecution> nextScripts = new ArrayList<AnimationExecution>();
+    /* package */ List<AnimationExecution> scripts = new ArrayList<AnimationExecution>();
 
     private Animation() {
         super();
@@ -40,20 +40,15 @@ public class Animation implements Module {
     }
 
     public void update(long now) {
-        for (int i = scripts.size() - 1; i >= 0; i--) {
-            AnimationExecution execution = scripts.get(i);
+        Iterator<AnimationExecution> iterator = scripts.listIterator();
+        while (iterator.hasNext()) {
+            AnimationExecution execution = iterator.next();
 
             if (!execution.execute(now)) {
                 if (repeatLogic(execution, now)) {
-                    scripts.remove(i);
+                    iterator.remove();
                 }
             }
-        }
-
-        // Add next Scripts
-        if (!nextScripts.isEmpty()) {
-            scripts.addAll(nextScripts);
-            nextScripts.clear();
         }
     }
 
@@ -73,23 +68,20 @@ public class Animation implements Module {
             // Animation is over
             // Notify onAnimationFinish
             script.stop(now);
-
-            //Next Script
-            appendNextScript(script);
+            appendChildren(script);
         }
 
         return true;
     }
 
-    private void appendNextScript(AnimationScript script) {
-        //Next Scripts
-        List<AnimationScript> nextScript = script.getNext();
-
-        if (nextScript != null) {
-            for (AnimationScript s : nextScript) {
-                nextScripts.add(new AnimationExecution(s));
-                s.restart();
-            }
+    private void appendChildren(AnimationScript script) {
+        if (script.getNext() == null) {
+            return;
+        }
+        
+        for (AnimationScript s : script.getNext()) {
+            scripts.add(new AnimationExecution(s));
+            s.restart();
         }
     }
 
@@ -110,9 +102,8 @@ public class Animation implements Module {
         return scripts.size();
     }
 
-    public void clearAll() {
+    public void clear() {
         scripts.clear();
-        nextScripts.clear();
     }
 
     @Override
