@@ -39,14 +39,17 @@ public class HorizontalShakeAnimationTest {
         animation.calculate(0.25);
         Assert.assertEquals(-strength, layer.getX());
 
-        animation.calculate(0.30);
-        Assert.assertTrue(layer.getX() > -strength);
+        animation.calculate(0.25 + 0.25 / 2);
+        Assert.assertEquals(-strength / 2, layer.getX());
 
         animation.calculate(0.5);
         Assert.assertEquals(0, layer.getX());
 
         animation.calculate(0.60);
         Assert.assertTrue(layer.getX() < strength);
+
+        animation.calculate(0.50 + 0.25 / 2);
+        Assert.assertEquals(strength / 2, layer.getX());
 
         animation.calculate(0.75);
         Assert.assertEquals(strength, layer.getX());
@@ -71,6 +74,7 @@ public class HorizontalShakeAnimationTest {
         Assert.assertEquals(0, layer.getX());
         Animation.getInstance().update(25);
         Assert.assertEquals(-strength, layer.getX());
+        Animation.getInstance().update(50);
         Animation.getInstance().update(75);
         Assert.assertEquals(strength, layer.getX());
         Animation.getInstance().update(100);

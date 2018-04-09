@@ -36,17 +36,17 @@ public class VerticalShakeAnimationTest {
         animation.calculate(0.10);
         Assert.assertTrue(layer.getY() > -strength);
 
-        animation.calculate(0.25);
-        Assert.assertEquals(-strength, layer.getY());
-
-        animation.calculate(0.30);
-        Assert.assertTrue(layer.getY() > -strength);
+        animation.calculate(0.25 + 0.25 / 2);
+        Assert.assertEquals(-strength / 2, layer.getY());
 
         animation.calculate(0.5);
         Assert.assertEquals(0, layer.getY());
 
         animation.calculate(0.60);
         Assert.assertTrue(layer.getY() < strength);
+
+        animation.calculate(0.50 + 0.25 / 2);
+        Assert.assertEquals(strength / 2, layer.getY());
 
         animation.calculate(0.75);
         Assert.assertEquals(strength, layer.getY());
