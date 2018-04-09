@@ -13,6 +13,7 @@ import com.harium.etyl.core.graphics.Graphics;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class Animation implements Module {
 
@@ -40,13 +41,19 @@ public class Animation implements Module {
     }
 
     public void update(long now) {
-        Iterator<AnimationExecution> iterator = scripts.listIterator();
+        ListIterator<AnimationExecution> iterator = scripts.listIterator();
         while (iterator.hasNext()) {
             AnimationExecution execution = iterator.next();
 
-            if (!execution.execute(now)) {
+            // execution.execute returns if script is stopped
+            if (execution.execute(now)) {
                 if (repeatLogic(execution, now)) {
+                    // Stop script
+                    execution.getScript().stop(now);
+                    // Remove script
                     iterator.remove();
+                    // Append children if any
+                    appendChildren(execution.getScript(), iterator);
                 }
             }
         }
@@ -64,23 +71,18 @@ public class Animation implements Module {
             script.tick(now);
             // Keep the object in the list
             return false;
-        } else {
-            // Animation is over
-            // Notify onAnimationFinish
-            script.stop(now);
-            appendChildren(script);
         }
 
         return true;
     }
 
-    private void appendChildren(AnimationScript script) {
+    private void appendChildren(AnimationScript script, ListIterator<AnimationExecution> iterator) {
         if (script.getNext() == null) {
             return;
         }
         
         for (AnimationScript s : script.getNext()) {
-            scripts.add(new AnimationExecution(s));
+            iterator.add(new AnimationExecution(s));
             s.restart();
         }
     }

@@ -4,8 +4,6 @@ import com.harium.etyl.commons.interpolation.Interpolator;
 import com.harium.etyl.commons.layer.Layer;
 import com.harium.etyl.core.animation.Animation;
 import com.harium.etyl.core.animation.OnAnimationFinishListener;
-import com.harium.etyl.core.animation.script.complex.HorizontalShakeAnimation;
-import com.harium.etyl.core.animation.script.complex.VerticalShakeAnimation;
 import com.harium.etyl.layer.ImageLayer;
 
 public class LayerAnimation extends AnimationScript {

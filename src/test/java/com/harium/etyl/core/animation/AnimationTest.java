@@ -21,7 +21,7 @@ public class AnimationTest {
     }
 
     @Test
-    public void testUpdate() {
+    public void testRemoveIfFinished() {
         int duration = 1;
 
         LayerAnimation a1 = new LayerAnimation(duration);
@@ -31,6 +31,25 @@ public class AnimationTest {
         Assert.assertEquals(1, animation.scripts.size());
         animation.update(duration + 1);
         Assert.assertEquals(0, animation.scripts.size());
+    }
+
+    @Test
+    public void testAddChildren() {
+        int duration = 1;
+
+        LayerAnimation a1 = new LayerAnimation(duration);
+
+        LayerAnimation a11 = new LayerAnimation(duration);
+        a1.addNext(a11);
+
+        animation.add(a1);
+        animation.update(0);
+        Assert.assertEquals(1, animation.scripts.size());
+        animation.update(duration + 1);
+
+        // a11 was added
+        Assert.assertEquals(1, animation.scripts.size());
+        Assert.assertEquals(a11, animation.scripts.get(0).getScript());
     }
 
 }

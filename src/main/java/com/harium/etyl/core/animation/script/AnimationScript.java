@@ -83,7 +83,7 @@ public abstract class AnimationScript {
         if (started && !stopped) {
             long elapsedTime = now - startedAt - delay;
 
-            if (elapsedTime >= duration) {
+            if (elapsedTime > duration) {
                 if (elapsedTime >= duration + endDelay) {
                     stopped = true;
                 }
@@ -104,7 +104,7 @@ public abstract class AnimationScript {
 
         if (factor < 1) {
             calculate(factor);
-        } else if (loop == Animation.REPEAT_FOREVER || loop > 0) {
+        } else if (factor != 1 && (loop == Animation.REPEAT_FOREVER || loop > 0)) {
             calculate(factor - 1);
             return true;
         } else {
