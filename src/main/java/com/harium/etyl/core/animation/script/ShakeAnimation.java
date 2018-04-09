@@ -22,9 +22,11 @@ public abstract class ShakeAnimation extends StrengthAnimation {
             double sub = (1 - factor) * 4;
             value = initial + strength * sub;
         } else {
+            double realFactor = (factor - 0.25) * 2;
             double startValue = initial - strength;
             double endValue = initial + strength;
-            value = startValue + (endValue - startValue) * factor;
+
+            value = startValue + (endValue - startValue) * realFactor;
         }
 
         return value;

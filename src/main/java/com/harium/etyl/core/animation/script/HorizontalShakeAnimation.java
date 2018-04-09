@@ -20,6 +20,11 @@ public class HorizontalShakeAnimation extends ShakeAnimation {
         target.setX((int) value);
     }
 
+    public HorizontalShakeAnimation strength(int strength) {
+        this.strength = strength;
+        return this;
+    }
+
     /*@Override
     public void onAnimationStart(long now) {
         super.onAnimationStart(now);
