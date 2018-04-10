@@ -12,7 +12,7 @@ public class CustomAnimation extends AnimationScript {
     }
 
     @Override
-    public void calculate(double factor) {
+    public void calculate(float factor) {
         animator.animate(factor);
     }
 

@@ -4,11 +4,11 @@ import com.harium.etyl.commons.layer.Layer;
 
 public class MovementAnimation extends LayerAnimation {
 
-    protected double startX = UNDEFINED;
-    protected double endX = 0;
+    protected float startX = UNDEFINED;
+    protected float endX = 0;
 
-    protected double startY = UNDEFINED;
-    protected double endY = 0;
+    protected float startY = UNDEFINED;
+    protected float endY = 0;
 
     public MovementAnimation(Layer target) {
         super(target);
@@ -30,7 +30,7 @@ public class MovementAnimation extends LayerAnimation {
         }
     }
 
-    public void calculate(double factor) {
+    public void calculate(float factor) {
         double valueX = interpolator.interpolate(startX, endX, factor);
         double valueY = interpolator.interpolate(startY, endY, factor);
 

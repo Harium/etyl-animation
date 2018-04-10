@@ -2,7 +2,7 @@ package com.harium.etyl.core.animation.script;
 
 import com.harium.etyl.commons.interpolation.Interpolator;
 import com.harium.etyl.core.animation.Animation;
-import com.harium.etyl.core.animation.OnAnimationFinishListener;
+import com.harium.etyl.core.animation.OnCompleteListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,7 @@ public abstract class AnimationScript {
     protected long duration = 0;
     protected long delay = 0;
     protected int loop = 0;
+    protected int currentLoop = 0;
 
     private boolean started = false;
     private boolean stopped = false;
@@ -25,13 +26,13 @@ public abstract class AnimationScript {
 
     protected List<AnimationScript> next;
 
-    protected OnAnimationFinishListener listener = NULL_LISTENER;
+    protected OnCompleteListener listener = NULL_LISTENER;
 
     protected Interpolator interpolator = Interpolator.LINEAR;
 
-    private static final OnAnimationFinishListener NULL_LISTENER = new OnAnimationFinishListener() {
+    private static final OnCompleteListener NULL_LISTENER = new OnCompleteListener() {
         @Override
-        public void onAnimationFinish(long now) {
+        public void onComplete(long now) {
         }
     };
 
@@ -67,7 +68,7 @@ public abstract class AnimationScript {
     public void stop(long now) {
         started = true;
         stopped = true;
-        onAnimationFinish(now);
+        onAnimationComplete(now);
     }
 
     /**
@@ -120,7 +121,7 @@ public abstract class AnimationScript {
         return (float) timeElapsed / duration;
     }
 
-    public abstract void calculate(double factor);
+    public abstract void calculate(float factor);
 
     public AnimationScript startAt(long delay) {
         this.delay = delay;
@@ -147,21 +148,13 @@ public abstract class AnimationScript {
         return this;
     }
 
-    public AnimationScript onFinish(OnAnimationFinishListener listener) {
+    public AnimationScript onFinish(OnCompleteListener listener) {
         this.listener = listener;
         return this;
     }
 
     public boolean isStopped() {
         return stopped;
-    }
-
-    public int getRepeat() {
-        return loop;
-    }
-
-    public void setRepeat(int repeat) {
-        this.loop = repeat;
     }
 
     public List<AnimationScript> getNext() {
@@ -199,11 +192,11 @@ public abstract class AnimationScript {
         return loop;
     }
 
-    public OnAnimationFinishListener getListener() {
+    public OnCompleteListener getListener() {
         return listener;
     }
 
-    public void setListener(OnAnimationFinishListener listener) {
+    public void setListener(OnCompleteListener listener) {
         this.listener = listener;
     }
 
@@ -223,11 +216,18 @@ public abstract class AnimationScript {
         this.referenced = referenced;
     }
 
-    public void onAnimationFinish(long now) {
-        listener.onAnimationFinish(now);
+    public void onAnimationComplete(long now) {
+        listener.onComplete(now);
     }
 
     public void onAnimationStart(long now) {
     }
 
+    public void setCurrentLoop(int currentLoop) {
+        this.currentLoop = currentLoop;
+    }
+
+    public int getCurrentLoop() {
+        return currentLoop;
+    }
 }

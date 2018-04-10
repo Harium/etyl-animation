@@ -22,7 +22,7 @@ public class VerticalAnimation extends SingleIntervalAnimation {
     }
 
     @Override
-    protected void update(double value) {
+    protected void update(float value) {
         target.setY((int) value);
     }
 

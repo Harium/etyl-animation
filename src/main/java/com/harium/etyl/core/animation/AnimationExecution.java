@@ -4,7 +4,6 @@ import com.harium.etyl.core.animation.script.AnimationScript;
 
 public class AnimationExecution {
 
-    private int repeated = 0;
     private long correction = 0;
     private boolean started = false;
 
@@ -39,17 +38,8 @@ public class AnimationExecution {
     public void repeat(long now) {
         calculateCorrection(now);
 
-        repeated++;
+        script.setCurrentLoop(script.getCurrentLoop() + 1);
         script.start(now + correction);
-        //script.restart();
-    }
-
-    public int getRepeated() {
-        return repeated;
-    }
-
-    public void setRepeated(int repeated) {
-        this.repeated = repeated;
     }
 
     public long getCorrection() {

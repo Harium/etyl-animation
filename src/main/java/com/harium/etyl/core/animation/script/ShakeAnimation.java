@@ -4,6 +4,8 @@ import com.harium.etyl.commons.layer.Layer;
 
 public abstract class ShakeAnimation extends StrengthAnimation {
 
+    private static final float INTERVAL = 0.25f;
+
     public ShakeAnimation(Layer target) {
         super(target);
     }
@@ -12,23 +14,26 @@ public abstract class ShakeAnimation extends StrengthAnimation {
         super(target, time);
     }
 
-    protected double calculateValue(double factor, double initial) {
-        double value;
+    protected float calculateValue(float factor) {
+        float rFactor;
+        float start, end;
+        float value;
 
-        if (factor <= 0.25) {
-            double sub = factor / 0.25;
-            value = initial - strength * sub;
-        } else if (factor >= 0.75) {
-            double sub = (1 - factor) * 4;
-            value = initial + strength * sub;
+        if (factor <= INTERVAL) {
+            rFactor = factor / INTERVAL;
+            start = 0;
+            end = strength;
+        } else if (factor <= 0.75f) {
+            rFactor = (factor - INTERVAL) / 0.5f;
+            start = strength;
+            end = -strength;
         } else {
-            double realFactor = (factor - 0.25) * 2;
-            double startValue = initial - strength;
-            double endValue = initial + strength;
-
-            value = startValue + (endValue - startValue) * realFactor;
+            rFactor = (factor - 0.75f) / INTERVAL;
+            start = -strength;
+            end = 0;
         }
 
+        value = start + (end - start) * rFactor;
         return value;
     }
 }

@@ -30,16 +30,16 @@ public class StretchAndBackVerticalAnimation extends StretchVerticalAnimation {
     }
 
     @Override
-    public void setInterval(double startValue, double endValue) {
+    public void setInterval(float startValue, float endValue) {
         super.setInterval(startValue, endValue);
         backToNormal.setInterval(endValue, startValue);
     }
 
     @Override
-    public void onAnimationFinish(long now) {
+    public void onAnimationComplete(long now) {
         double offset = ((target.getH() / 2) * endValue);
         target.setY((int) (originalY - offset));
-        super.onAnimationFinish(now);
+        super.onAnimationComplete(now);
     }
 
 }

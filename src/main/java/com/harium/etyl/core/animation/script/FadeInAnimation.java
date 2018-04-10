@@ -33,8 +33,8 @@ public class FadeInAnimation extends OpacityAnimation {
     }
 
     @Override
-    public void onAnimationFinish(long now) {
-        super.onAnimationFinish(now);
+    public void onAnimationComplete(long now) {
+        super.onAnimationComplete(now);
         this.update(endValue);
     }
 }

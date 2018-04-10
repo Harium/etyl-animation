@@ -30,7 +30,7 @@ public class NeedleAnimation extends AnimationScript {
         endNeedleY = needleY;
     }
 
-    protected void update(double value) {
+    protected void update(float value) {
         if (value == 0) {
             target.setNeedleX(startNeedleX);
             target.setNeedleY(startNeedleY);
@@ -41,7 +41,7 @@ public class NeedleAnimation extends AnimationScript {
     }
 
     @Override
-    public void calculate(double factor) {
+    public void calculate(float factor) {
         if (factor <= 0.5) {
             update(0);
         } else {

@@ -8,16 +8,18 @@ public class HorizontalShakeAnimation extends ShakeAnimation {
 
     public HorizontalShakeAnimation(Layer target) {
         super(target);
+        initialX = target.getX();
     }
 
     public HorizontalShakeAnimation(Layer target, long time) {
         super(target, time);
+        initialX = target.getX();
     }
 
     @Override
-    public void calculate(double factor) {
-        double value = calculateValue(factor, initialX);
-        target.setX((int) value);
+    public void calculate(float factor) {
+        float value = calculateValue(factor);
+        target.setX(initialX + (int) value);
     }
 
     public HorizontalShakeAnimation strength(int strength) {
@@ -25,16 +27,18 @@ public class HorizontalShakeAnimation extends ShakeAnimation {
         return this;
     }
 
-    /*@Override
+    @Override
     public void onAnimationStart(long now) {
         super.onAnimationStart(now);
-        initialX = target.getX();
+        if (currentLoop == 0) {
+            initialX = target.getX();
+        }
     }
 
     @Override
-    public void onAnimationFinish(long now) {
-        super.onAnimationFinish(now);
+    public void onAnimationComplete(long now) {
+        super.onAnimationComplete(now);
         target.setX(initialX);
-    }*/
+    }
 
 }

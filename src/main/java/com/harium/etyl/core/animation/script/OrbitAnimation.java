@@ -48,7 +48,7 @@ public class OrbitAnimation extends SingleIntervalAnimation {
     }
 
     @Override
-    public void update(double value) {
+    public void update(float value) {
 
         double angle = value * Math.PI / 180;
 

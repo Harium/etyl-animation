@@ -22,7 +22,7 @@ public class HorizontalAnimation extends SingleIntervalAnimation {
     }
 
     @Override
-    protected void update(double value) {
+    protected void update(float value) {
         target.setX((int) value);
     }
 

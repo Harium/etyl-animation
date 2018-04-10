@@ -2,7 +2,7 @@ package com.harium.etyl.core.animation.script;
 
 import com.harium.etyl.commons.layer.Layer;
 import com.harium.etyl.core.animation.Animation;
-import com.harium.etyl.core.animation.OnAnimationFinishListener;
+import com.harium.etyl.core.animation.OnCompleteListener;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ public class AnimationScriptTest {
     public void setUp() {
         script = new AnimationScript() {
             @Override
-            public void calculate(double factor) {}
+            public void calculate(float factor) {}
         };
     }
 
@@ -36,9 +36,9 @@ public class AnimationScriptTest {
 
     @Test
     public void testOnFinish() {
-        OnAnimationFinishListener listener = new OnAnimationFinishListener() {
+        OnCompleteListener listener = new OnCompleteListener() {
             @Override
-            public void onAnimationFinish(long now) {}
+            public void onComplete(long now) {}
         };
 
         Layer layer = new Layer();

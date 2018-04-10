@@ -22,7 +22,7 @@ public class ScaleUniformAnimation extends SingleIntervalAnimation {
     }
 
     @Override
-    public void update(double value) {
+    public void update(float value) {
         target.setScale(value);
     }
 }

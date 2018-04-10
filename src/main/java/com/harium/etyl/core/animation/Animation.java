@@ -11,7 +11,6 @@ import com.harium.etyl.core.animation.script.LayerAnimation;
 import com.harium.etyl.core.graphics.Graphics;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -62,18 +61,24 @@ public class Animation implements Module {
     private boolean repeatLogic(AnimationExecution execution, long now) {
         AnimationScript script = execution.getScript();
 
-        if (script.getRepeat() == REPEAT_FOREVER) {
+        if (script.getLoop() == REPEAT_FOREVER) {
+            script.onAnimationComplete(now);
             execution.restart(now);
-            // Keep the object in the list
+            // Keep execution in the list
             return false;
-        } else if (execution.getRepeated() < script.getRepeat() - 1) {
+        } else if (script.getCurrentLoop() < script.getLoop() - 1) {
+            script.onAnimationComplete(now);
             execution.repeat(now);
             script.tick(now);
-            // Keep the object in the list
+            // Keep execution in the list
             return false;
-        }
+        } else {
+            // Force animation to 1
+            //script.calculate(1);
 
-        return true;
+            // Remove execution from the list
+            return true;
+        }
     }
 
     private void appendChildren(AnimationScript script, ListIterator<AnimationExecution> iterator) {
@@ -89,15 +94,6 @@ public class Animation implements Module {
 
     public void add(AnimationScript script) {
         scripts.add(new AnimationExecution(script));
-    }
-
-    public void remove(AnimationScript script) {
-        for (AnimationExecution execution : scripts) {
-            if (execution.getScript() == script) {
-                scripts.remove(script);
-                break;
-            }
-        }
     }
 
     public int size() {

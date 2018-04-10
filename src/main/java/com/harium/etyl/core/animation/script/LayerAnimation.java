@@ -3,7 +3,7 @@ package com.harium.etyl.core.animation.script;
 import com.harium.etyl.commons.interpolation.Interpolator;
 import com.harium.etyl.commons.layer.Layer;
 import com.harium.etyl.core.animation.Animation;
-import com.harium.etyl.core.animation.OnAnimationFinishListener;
+import com.harium.etyl.core.animation.OnCompleteListener;
 import com.harium.etyl.layer.ImageLayer;
 
 public class LayerAnimation extends AnimationScript {
@@ -47,7 +47,7 @@ public class LayerAnimation extends AnimationScript {
     }
 
     @Override
-    public void calculate(double factor) {
+    public void calculate(float factor) {
         // TODO Auto-generated method stub
     }
 
@@ -247,7 +247,7 @@ public class LayerAnimation extends AnimationScript {
         return this;
     }
 
-    public LayerAnimation onFinish(OnAnimationFinishListener listener) {
+    public LayerAnimation onFinish(OnCompleteListener listener) {
         this.listener = listener;
         return this;
     }

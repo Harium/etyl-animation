@@ -4,8 +4,8 @@ import com.harium.etyl.commons.layer.Layer;
 
 public abstract class SingleIntervalAnimation extends LayerAnimation {
 
-    protected double startValue = 0;
-    protected double endValue = 0;
+    protected float startValue = 0;
+    protected float endValue = 0;
 
     public SingleIntervalAnimation(Layer target) {
         super(target);
@@ -29,8 +29,8 @@ public abstract class SingleIntervalAnimation extends LayerAnimation {
     }
 
     @Override
-    public void calculate(double factor) {
-        double value = interpolator.interpolate(startValue, endValue, factor);
+    public void calculate(float factor) {
+        float value = (float) interpolator.interpolate(startValue, endValue, factor);
         update(value);
     }
 
@@ -43,19 +43,19 @@ public abstract class SingleIntervalAnimation extends LayerAnimation {
         return this;
     }
 
-    public SingleIntervalAnimation from(double value) {
+    public SingleIntervalAnimation from(float value) {
         setStartValue(value);
         return this;
     }
 
-    public SingleIntervalAnimation to(double value) {
+    public SingleIntervalAnimation to(float value) {
         setEndValue(value);
         return this;
     }
 
-    protected abstract void update(double value);
+    protected abstract void update(float value);
 
-    public void setInterval(double startValue, double endValue) {
+    public void setInterval(float startValue, float endValue) {
         this.startValue = startValue;
         this.endValue = endValue;
 
@@ -65,19 +65,19 @@ public abstract class SingleIntervalAnimation extends LayerAnimation {
         }
     }
 
-    public double getStartValue() {
+    public float getStartValue() {
         return startValue;
     }
 
-    public void setStartValue(double startValue) {
+    public void setStartValue(float startValue) {
         this.startValue = startValue;
     }
 
-    public double getEndValue() {
+    public float getEndValue() {
         return endValue;
     }
 
-    public void setEndValue(double endValue) {
+    public void setEndValue(float endValue) {
         this.endValue = endValue;
     }
 }

@@ -14,7 +14,7 @@ public class DummyAnimation extends LayerAnimation {
     }
 
     @Override
-    public void calculate(double factor) {
+    public void calculate(float factor) {
 
     }
 

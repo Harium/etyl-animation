@@ -5,6 +5,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
+
 public class AnimationTest {
 
     private Animation animation;
@@ -25,12 +28,17 @@ public class AnimationTest {
         int duration = 1;
 
         LayerAnimation a1 = new LayerAnimation(duration);
+        OnCompleteListener listener = mock(OnCompleteListener.class);
+        a1.setListener(listener);
 
         animation.add(a1);
         animation.update(0);
         Assert.assertEquals(1, animation.scripts.size());
         animation.update(duration + 1);
         Assert.assertEquals(0, animation.scripts.size());
+
+        // Check if listener was called
+        verify(listener, times(1)).onComplete(any(long.class));
     }
 
     @Test

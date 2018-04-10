@@ -32,7 +32,7 @@ public class OpacityAnimation extends SingleIntervalAnimation {
     }
 
     @Override
-    protected void update(double value) {
+    protected void update(float value) {
         target.setOpacity((int) value);
     }
 

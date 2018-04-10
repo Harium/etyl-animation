@@ -26,7 +26,7 @@ public class StretchVerticalAnimation extends SingleIntervalAnimation {
     }
 
     @Override
-    public void update(double value) {
+    public void update(float value) {
         target.setScaleY(value);
         target.setY((int) (originalY - (target.getH() / 2) * value));
     }
